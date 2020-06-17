@@ -12,10 +12,14 @@ def shiftFeedback (flip, switch):
         
         #print("Switches Before: " + str(switch))
         #print(str(switch[y]) + str(flip[y]))
-        if switch[y] == 1 and flip[y] == 1:
-            switch[y] = 1
-        else:
-            switch[y] = 0
+        
+
+        #P Switch XOR 
+        switch[y] = switch[y] ^ flip[y]
+        #if switch[y] == 1 and flip[y] == 1:
+            #switch[y] = 1
+        #else:
+            #switch[y] = 0
          
         #print("Switches After: " + str(switch))
         
