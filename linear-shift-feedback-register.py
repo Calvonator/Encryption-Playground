@@ -1,67 +1,78 @@
+import time
+import binaryConv as binary
+
+#This function takes two lists - the flip flop bits and the switch bits. Each call to this function acts as a single time step in the linear shift feedback loop.
+#To create an 8 bit number, place the function call in a loop with 8 iterations
+#The function implements the steps used by a Linear Shift Feedback Register used to generate psuedo-random numbers. Requires that the values to the flip flops and switches be pre-defined
+
 def shiftFeedback (flip, switch):
-    output = flip[0] #Might be before or after the shift occurs
-    #print(flip)
+    
+    #The first(rightmost) flip flop value is the output for the current time step 
+    output = flip[0] #Might be before or after the shift occurs?
+
+    #First step is to shift the values of the flip flops over by 1
     for x in range(len(flip) - 1):
         flip[x] = flip[x+1]
-    
-    #print(flip)
+
+    #After the shift, the value for the last flip flop must be generated. Done by XORing all values of the flip flops where the corresponding switch is equal to 1
     xorBits = []
-    for y in range(len(switch) - 1):
+
+    for y in range(len(switch)):
         if switch[y] == 1:
-            xorBits.append(flip[y])
+            #If the switch is equal to 1, the value in the flip flop and the switch are bitwise AND with the result placed into the xorBits list for later XORing
+            xorBits.append(flip[y] & switch[y])
+          
         
-        #print("Switches Before: " + str(switch))
-        #print(str(switch[y]) + str(flip[y]))
         
 
-        #P Switch XOR 
-        switch[y] = switch[y] ^ flip[y]
-        #if switch[y] == 1 and flip[y] == 1:
-            #switch[y] = 1
-        #else:
-            #switch[y] = 0
-         
-        #print("Switches After: " + str(switch))
+        #After each timestep, the value of the switches are changed depending on an AND 
+        switch[y] ^= flip[y]
         
+        
+    
     #Figure out how to see if there are more than one 1s in the xorBits list. If more than 1 then the bit equals 0
-        
+    xorRes = 0
+    #print(xorBits)
+    for z in range(len(xorBits)):
+        xorRes ^= xorBits[z]
     
+    #Place the result of the Xor/And of the switches and flip flops into the leftmost flip flop.
+    #print(flip)
+    flip[len(flip) - 1] = xorRes  
+    #print(flip)
     return output
-
-#Takes an 8 bit binary as a list and coverts it to decimal (Create a modules for all binary conversions(8, 16, 32 and 64 bits))
-def eightBitDecimalConv(bitBinary):
-
-    if len(bitBinary) != 8:
-        print("Binary input is not an 8-bit binary number")
-        return False
-    
-    bit = [128, 64, 32, 16, 8, 4, 2, 1]
-    decimal = 0
-    for x in range(len(bitBinary)):
-        if bitBinary[x] == 1:
-            decimal = decimal + bit[x]
-    return decimal
-
         
 
-flipFlops = [0, 0, 0, 1]
+flipFlops = [1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0]
+pSwitches = [1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1]
 
-
-pSwitches = [1, 1, 1, 1]
 
 randOutput = []
-
-for _ in range(8):
-    outputBit = shiftFeedback(flipFlops, pSwitches)
-    randOutput.append(outputBit)
-
-print("Random Output")
-print(randOutput)
+count = 0
+numbers = []
+repeatFlag = 0
 
 
-print(flipFlops)
+for num in range(10000):
+    
+    randNumber = []
+    count = count + 1
+    
+    for _ in range(8):
+        
 
-binary = [1, 0, 0, 0, 0, 0, 1, 1]
+        rand = shiftFeedback(flipFlops, pSwitches)
+        randNumber.append(rand)
+        
+    print(binary.unsignedDecimalEncode(randNumber))
+    numbers.append(binary.unsignedDecimalEncode(randNumber))
 
-print("Random Decimal")
-print(eightBitDecimalConv(randOutput))
+    
+    #Finds the period cycle for the LSFR (How many timesteps until the output begins to repeat)
+    if count > 5 and numbers[num] == numbers[4]:# and numbers[num + 2] == numbers[6]:# and repeatFlag == 0:
+        print(numbers[4:])
+        print("Actual Repeat Found")
+        print("Cycle period: " + str(len(numbers[4:])))
+        
+        repeatFlag = 1
+  
