@@ -45,15 +45,19 @@ while True:
         randChoice = input("Would you like to input the switches manually (y) or randomly generate (n)?")
         
         if randChoice.lower() == 'y':
+            noOfSwitches = len(ffSeed)
+            print("Please enter the values for " + str(noOfSwitches) + " switches:\n")
             
             for _ in range(len(ffSeed)):
+
+                if noOfSwitches == 20 or noOfSwitches == 10 or noOfSwitches == 5 or noOfSwitches == 3 or noOfSwitches == 1:
+                    print(str(noOfSwitches) + " more switches")
                 
                 bit = input()
-                
-                if bit.lower() == 'q':
-                    break
-                
-                ffSeed.append(int(bit))
+                                
+                switch.append(int(bit))
+
+                noOfSwitches = noOfSwitches - 1
                 
         elif randChoice.lower() == 'n':
             
