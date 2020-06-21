@@ -66,7 +66,7 @@ Takes a 16 bit (no greater than 2^16) decimal (integer) and decodes the value to
 
 This file was used to test the time difference between two functions that both converted binary to decimal. The **unsignDecimalConv** function uses a list that has the values of 2^0-63 placed in a list used to lookup the value of a particular bit, while **decimalConv** performs the exponential operation at run-time.
 
-The results of this timeit test shows the function that performs the exponential operation at runtime (**decimalConv**) is 46 percent faster:
+The results of this timeit test (performed 1,000,000 times) shows the function that performs the exponential operation at runtime (**decimalConv**) is 46 percent faster:
 ```
 unsignedDecimalConv(): 5.4829409 seconds
 decimalConv(): 2.9273619 seconds
