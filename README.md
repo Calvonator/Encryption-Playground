@@ -42,6 +42,7 @@ A linear shift feedback register (LSFR) of *n* period has *n* Flip Flops and *n*
 - Figure out how to combine multiple LSFRs to create a stronger generation of random numbers
 - Test the statistical properties of the output. (Should be a ~50% chance of being a 1 or a 0)
 - ~~In that case that the user chooses to manually enter switch values, find the length of the flip flop bits entered, present this number and enter a forced loop for that many iterations.~~
+- Build a trivium based system of LSFR
 
 
 ## Binary Conversion
