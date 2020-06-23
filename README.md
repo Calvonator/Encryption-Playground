@@ -19,6 +19,8 @@ A basic cipher that takes a plaintext and key (1-26), and produces a ciphertext 
 **To-Do**
 - Modify the cipher so that non-alphabetical character can be encrypted.
 - Create a form of the cipher that converts the plaintext to binary and then performs a bitshift (key value) to encrypt/decrpyt
+- Create a brute forcer/other attack scripts
+- Look at the modules for Crypto
 
 ### Block Cipher 
 
@@ -26,7 +28,8 @@ A cipher that encrypts a block at a time. Currently still need to make it work -
 
 **To-Do**
 - Create a diagram of the process as a guidline for rest of the development.
-
+- Create a brute forcer/other attack scripts
+- Look at the modules for Crypto
 
 ## Random Number Generation
 
