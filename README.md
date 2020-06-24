@@ -36,11 +36,27 @@ A cipher that encrypts a block at a time. Currently still need to make it work -
 ### Linear Shift Feedback Register
 A linear shift feedback register (LSFR) of *n* period has *n* Flip Flops and *n* switches that contain 1 bit each. These bits are pre-determined and known as the seed. LSFR's are psuedo-random and begin to repeat, known as the period cycle. The maximum length of this period is 2^*n* - 1. 
 
+The LSFR implementation demonstrates good statistical randomness, verified by counting the number of ones and zeros for multiple different seeds. Results as follows: 
+
+ ```
+ Zero Count: 50554
+One Count: 49446
+
+Zero Count: 51195
+One Count: 48805
+
+Zero Count: 47383
+One Count: 52617
+
+Zero Count: 51957
+One Count: 48043
+```
+  
 **To-Do**
 - Find the best combination of Flip Flop and Switch seeds. Try reach a period length of over 1000
 - Try and attack the random number generation (Solving a system of linear equations).
 - Figure out how to combine multiple LSFRs to create a stronger generation of random numbers
-- Test the statistical properties of the output. (Should be a ~50% chance of being a 1 or a 0)
+- ~~Test the statistical properties of the output. (Should be a ~50% chance of being a 1 or a 0)~~
 - ~~In that case that the user chooses to manually enter switch values, find the length of the flip flop bits entered, present this number and enter a forced loop for that many iterations.~~
 - Build a trivium based system of LSFR
 
