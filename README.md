@@ -1,6 +1,6 @@
 # Encryption-Playground
 
-This is an area for me to learn how to implement different cipher encryptions. 
+This is an area for me to learn how to implement different encryption techniques. 
 
 # Table of Contents
 <a href="#ciphers">Ciphers</a>
