@@ -43,36 +43,36 @@ def shiftFeedback (flip, switch):
     return output
         
 
-flipFlops = [1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0]
-pSwitches = [1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1]
+#flipFlops = [1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0]
+#pSwitches = [1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1]
 
 
-randOutput = []
-count = 0
-numbers = []
-repeatFlag = 0
+#randOutput = []
+#count = 0
+#numbers = []
+#repeatFlag = 0
 
 
-for num in range(10000):
+#for num in range(10000):
     
-    randNumber = []
-    count = count + 1
+    #randNumber = []
+    #count = count + 1
     
-    for _ in range(8):
+    #for _ in range(8):
         
 
-        rand = shiftFeedback(flipFlops, pSwitches)
-        randNumber.append(rand)
+        #rand = shiftFeedback(flipFlops, pSwitches)
+        #randNumber.append(rand)
         
-    print(binary.unsignedDecimalEncode(randNumber))
-    numbers.append(binary.unsignedDecimalEncode(randNumber))
+    #print(binary.unsignedDecimalEncode(randNumber))
+    #numbers.append(binary.unsignedDecimalEncode(randNumber))
 
     
     #Finds the period cycle for the LSFR (How many timesteps until the output begins to repeat)
-    if count > 5 and numbers[num] == numbers[4]:# and numbers[num + 2] == numbers[6]:# and repeatFlag == 0:
-        print(numbers[4:])
-        print("Actual Repeat Found")
-        print("Cycle period: " + str(len(numbers[4:])))
+    #if count > 5 and numbers[num] == numbers[4]:# and numbers[num + 2] == numbers[6]:# and repeatFlag == 0:
+        #print(numbers[4:])
+        #print("Actual Repeat Found")
+        #print("Cycle period: " + str(len(numbers[4:])))
         
-        repeatFlag = 1
+        #repeatFlag = 1
   
